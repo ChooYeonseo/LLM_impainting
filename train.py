@@ -11,7 +11,7 @@ def train(img_list, gt_list, model, epoch, learning_rate, optimizer, criterion, 
         for iter in range(data_len):
             # [1] 빈칸을 작성하시오.
             # 학습 과정
-            inputs = img_list[iter]
+            inputs = img_list[iter][np.newaxis, :,:,:]
             label = gt_list[iter]
             
             model.train()
@@ -29,4 +29,4 @@ def train(img_list, gt_list, model, epoch, learning_rate, optimizer, criterion, 
             running_loss += loss.item()
             if (iter % 100 == 0) & (iter != 0):
                 print(f'Iteration: {iter+data_len*i}, Loss: {running_loss / (iter+1+data_len*i)}')
-        torch.save(model.state_dict(), f'model_state_dict{i}.pth')
+        torch.save(model.state_dict(), f'/content/drive/MyDrive/OUTTA2024/2024-outta-deeplearning-advanced/model_params/model_state_dict{i}.pth')
